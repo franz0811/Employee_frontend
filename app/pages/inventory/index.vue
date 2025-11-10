@@ -19,6 +19,7 @@
         label="Select Category"
         :items="category.data"
         item-title="category_name"
+        item-value="id"
         class="mx-4"
         variant="outlined"
       ></v-select>
@@ -65,7 +66,7 @@ const { data: inventory, error: invError } = await useFetch(
 const selectedCategory = ref(null);
 const search = ref("");
 
-// console.log(selectedCategory.value);
+// console.log(!selectedCategory.value);
 
 const headers = [
   { key: "product_name", title: "Product Name" },
@@ -77,10 +78,10 @@ const headers = [
 ];
 
 const filteredInventories = computed(() => {
-  const items = inventory.value?.data || [];
+  const items = inventory.value.data;
   if (!selectedCategory.value) return items;
   return items.filter((item) => {
-    const itemCatId = item.category?.id;
+    const itemCatId = item.category.id;
     return itemCatId === selectedCategory.value;
   });
 });
