@@ -45,8 +45,6 @@ const { data: inventory, error: invError } = await useFetch(
   "http://localhost:1337/api/inventories?populate=category"
 );
 
-// console.log(inventory.value);
-
 // const categoryOptions = category.value.data.map((data) => ({
 //   title: data.category_name,
 //   value: data.id,
