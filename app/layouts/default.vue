@@ -15,7 +15,7 @@
 
         <v-list density="compact" nav>
           <v-list-item
-            to="/"
+            to="/dashboard"
             prepend-icon="mdi-view-dashboard"
             title="Dashboard"
             value="myfiles"
@@ -39,6 +39,14 @@
             value="starred"
           ></v-list-item>
         </v-list>
+        <v-container class="d-flex flex-column justify-end" style="height: 65%;">
+          <v-btn
+          color="red"
+          to="/"
+          >
+            Log out
+          </v-btn>
+        </v-container>
       </v-navigation-drawer>
       <!-- Appbar -->
 

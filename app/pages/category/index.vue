@@ -112,8 +112,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-
 /* ------------------ STATE ------------------ */
 const categories = ref([]);
 const search = ref("");
