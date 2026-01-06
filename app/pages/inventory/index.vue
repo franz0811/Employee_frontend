@@ -76,13 +76,17 @@ const headers = [
 ];
 
 const filteredInventories = computed(() => {
-  const items = inventory.value.data;
-  if (!selectedCategory.value) return items;
-  return items.filter((item) => {
-    const itemCatId = item.category.id;
-    return itemCatId === selectedCategory.value;
-  });
+  // If no category is selected, show all items
+  if (!selectedCategory.value) {
+    return inventory.value?.data || [];
+  }
+
+  // Show only items that match the selected category
+  return inventory.value.data.filter(item =>
+    item.category.id === selectedCategory.value
+  );
 });
+
 
 // console.log(inventory.value?.data);
 </script>
