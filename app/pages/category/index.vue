@@ -40,7 +40,7 @@
       </v-btn>
     </template> -->
         <!-- Actual better UI Design for Edit and Delete option-->
-        <template #item.actions="{ item }">
+        <template v-slot:item.actions="{ item }">
           <v-menu location="start top">
             <template #activator="{ props }">
               <v-btn
