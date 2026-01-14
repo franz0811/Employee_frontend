@@ -25,6 +25,21 @@
         :items="categories"
         :search="search"
       >
+        <-- Alternative UI design for Edit and Delete option -->
+          <-- <template v-slot:item.actions="{ item }">
+      <v-btn
+        variant="text"
+        icon
+        @click="openEditDialog(item)"
+      >
+        <v-icon>mdi-pencil</v-icon>
+      </v-btn>
+
+      <v-btn variant="text" icon @click="deleteCategory(item)">
+        <v-icon>mdi-delete</v-icon>
+      </v-btn>
+    </template> -->
+        <-- Actual better UI Design for Edit and Delete option-->
         <template #item.actions="{ item }">
           <v-menu location="start top">
             <template #activator="{ props }">
@@ -46,7 +61,7 @@
               />
             </v-list>
           </v-menu>
-        </template>
+        </template> 
       </v-data-table>
 
     </v-card>
