@@ -7,10 +7,10 @@
     >
     <v-img
       class="ma-2"
-      max-width="228"
-      src="https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-v3-slim-text-light.svg"
+      max-width="200"
+      src="https://png.pngtree.com/png-clipart/20250128/original/pngtree-human-resources-specialist-3d-icon-isolated-on-a-white-background-symbolizing-png-image_20173414.png"
     ></v-img>
-      <h1 class="text-medium-emphasis pb-6">Inventory Login</h1>
+      <h1 class="text-medium-emphasis pb-6">Employee Login</h1>
 
       <v-text-field
         density="compact"

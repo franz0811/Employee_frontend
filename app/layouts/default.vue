@@ -1,13 +1,12 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="pa-0">
     <v-app>
-      <!-- Navigation Drawer -->
-      <v-navigation-drawer v-model="drawer">
+      <v-navigation-drawer v-model="drawer" color="grey-lighten-4">
         <v-list>
           <v-list-item
-            prepend-avatar="https://img.freepik.com/free-vector/vector-education-logo_779267-2083.jpg?semt=ais_hybrid&w=740&q=80"
-            subtitle="admin@gmailcom"
-            title="Administrator"
+            prepend-avatar="https://png.pngtree.com/png-clipart/20250128/original/pngtree-human-resources-specialist-3d-icon-isolated-on-a-white-background-symbolizing-png-image_20173414.png"
+            subtitle="admin@gmail.com"
+            title="HR Administrator"
           ></v-list-item>
         </v-list>
 
@@ -18,53 +17,50 @@
             to="/dashboard"
             prepend-icon="mdi-view-dashboard"
             title="Dashboard"
-            value="myfiles"
           ></v-list-item>
+
           <v-list-item
-            to="/inventory"
-            prepend-icon="mdi-playlist-edit"
-            title="Inventory"
-            value="shared"
+            to="/employees"
+            prepend-icon="mdi-account-group"
+            title="Employees"
           ></v-list-item>
+
           <v-list-item
-            to="/category"
-            prepend-icon="mdi-shape-plus"
-            title="Categories"
-            value="starred"
+            to="/attendance"
+            prepend-icon="mdi-clock-outline"
+            title="Attendance"
           ></v-list-item>
+
           <v-list-item
-            to="/users"
-            prepend-icon="mdi-account-multiple"
-            title="Users"
-            value="starred"
+            to="/leaves"
+            prepend-icon="mdi-calendar-blank"
+            title="Leave Requests"
           ></v-list-item>
         </v-list>
-        <v-container class="d-flex flex-column justify-end" style="height: 65%;">
+
+        <v-container class="d-flex flex-column justify-end" style="height: 10%;">
           <v-btn
-          color="red"
-          to="/"
+            color="red-darken-1"
+            variant="flat"
+            block
+            to="/login"
           >
             Log out
           </v-btn>
         </v-container>
       </v-navigation-drawer>
-      <!-- Appbar -->
 
-      <v-app-bar :elevation="2">
+      <v-app-bar :elevation="1">
         <template v-slot:prepend>
-          <v-app-bar-nav-icon
-            @click.stop="drawer = !drawer"
-          ></v-app-bar-nav-icon>
+          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </template>
-
-        <v-app-bar-title>Inventory</v-app-bar-title>
+        <v-app-bar-title>HR Management System</v-app-bar-title>
       </v-app-bar>
-      <!-- Main Content -->
 
       <v-main>
-        <div>
+        <v-container fluid>
           <slot />
-        </div>
+        </v-container>
       </v-main>
     </v-app>
   </v-container>
@@ -73,5 +69,3 @@
 <script setup>
 const drawer = ref(true);
 </script>
-
-<style></style>
