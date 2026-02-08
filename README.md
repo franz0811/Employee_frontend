@@ -1,75 +1,38 @@
-# Nuxt Minimal Starter
+# 📂 HR Management System
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Isang full-stack application para sa pag-manage ng HR operations gamit ang **Nuxt 3** at **Strapi v5**.
 
-## Setup
+## 🚀 Features
 
-Make sure to install dependencies:
+* **Dashboard**: Overview ng total employees, attendance ngayong araw, at pending leaves.
+* **Employee CRUD**: Pag-add, edit, at delete ng impormasyon ng empleyado.
+* **Attendance Tracking**: Monitoring ng check-in/out logs na may "No Employee Linked" filter.
+* **Leave Management**: Approve/Reject workflow para sa mga leave requests.
 
-```bash
-# npm
-npm install
+## 🛠️ Tech Stack
 
-# pnpm
-pnpm install
+* **Frontend**: Nuxt 3, Vuetify 3
+* **Backend**: Strapi v5
+* **Database**: SQLite
 
-# yarn
-yarn install
+## 🔧 Installation
 
-# bun
-bun install
-```
+1.  **Backend Setup**:
+    ```bash
+    cd backend
+    npm install
+    npm run develop
+    ```
+2.  **Frontend Setup**:
+    ```bash
+    cd frontend
+    npm install
+    npm run dev
+    ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 📄 Key Routes (Nuxt)
+* `/dashboard` - Main overview.
+* `/employees` - Employee list at actions.
+* `/employees/edit/[id]` - Dynamic editing page.
+* `/attendance` - Logs at monitoring.
+* `/leavelist` - Leave request management.
