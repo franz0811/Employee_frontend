@@ -1,76 +1,94 @@
 <template>
   <v-container fluid class="d-flex align-center justify-center" style="height: 100vh;">
-    <v-card
-      class="mx-auto pa-12 pb-8"
-      elevation="2"
-      rounded="lg"
-    >
-    <v-img
-      class="ma-2"
-      max-width="200"
-      src="https://png.pngtree.com/png-clipart/20250128/original/pngtree-human-resources-specialist-3d-icon-isolated-on-a-white-background-symbolizing-png-image_20173414.png"
-    ></v-img>
-      <h1 class="text-medium-emphasis pb-6">Employee Login</h1>
+    <v-card class="mx-auto pa-12 pb-8" elevation="2" rounded="lg" width="450">
+      <v-img
+        class="mx-auto mb-6"
+        max-width="150"
+        src="https://png.pngtree.com/png-clipart/20250128/original/pngtree-human-resources-specialist-3d-icon-isolated-on-a-white-background-symbolizing-png-image_20173414.png"
+      ></v-img>
+      
+      <h1 class="text-h5 text-center font-weight-bold pb-6">Employee Login</h1>
 
       <v-text-field
-        density="compact"
-        placeholder="Email address"
+        v-model="email"
+        label="Email address"
         prepend-inner-icon="mdi-email-outline"
         variant="outlined"
-      ></v-text-field>  
-
-      <v-text-field
-        :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-        :type="visible ? 'text' : 'password'"
         density="compact"
-        placeholder="Enter your password"
-        prepend-inner-icon="mdi-lock-outline"
-        variant="outlined"
-        @click:append-inner="visible = !visible"
       ></v-text-field>
 
-      <div class="text-subtitle-1 text-medium-emphasis">
+      <v-text-field
+        v-model="password"
+        label="Password"
+        :type="visible ? 'text' : 'password'"
+        :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+        @click:append-inner="visible = !visible"
+        prepend-inner-icon="mdi-lock-outline"
+        variant="outlined"
+        density="compact"
+      ></v-text-field>
 
-        <a
-          class="text-caption text-decoration-none text-blue mt-0 pt-0"
-          href="#"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          Forgot login password?</a>
-      </div>
+      <v-alert
+        v-if="errorMsg"
+        type="error"
+        variant="tonal"
+        density="compact"
+        class="mt-2 mb-4"
+      >
+        {{ errorMsg }}
+      </v-alert>
 
       <v-btn
-        class="mb-8"
+        block
         color="primary"
         size="large"
         variant="tonal"
-        block
-        to="/dashboard"
+        @click="handleLogin"
+        :loading="loading"
       >
         Log In
       </v-btn>
-
-      <v-card-text class="text-center">
-        <a
-          class="text-blue text-decoration-none"
-          href="#"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          Sign up now <v-icon icon="mdi-chevron-right"></v-icon>
-        </a>
-      </v-card-text>
     </v-card>
   </v-container>
 </template>
 
 <script setup>
-  definePageMeta({
-    layout: false,
-  })
-  const visible = ref(false)
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
+definePageMeta({ layout: false })
+
+const router = useRouter()
+const email = ref('')
+const password = ref('')
+const visible = ref(false)
+const loading = ref(false)
+const errorMsg = ref('')
+
+const handleLogin = async () => {
+  if (!email.value || !password.value) {
+    errorMsg.value = "Pakilagay ang email at password."
+    return
+  }
+  loading.value = true
+  errorMsg.value = ""
+  try {
+    const response = await $fetch('http://localhost:1337/api/auth/local', {
+      method: 'POST',
+      body: { identifier: email.value, password: password.value }
+    })
+    if (response.jwt) {
+      localStorage.setItem('auth_token', response.jwt)
+      router.push('/dashboard')
+    }
+  } catch (err) {
+    errorMsg.value = "Maling email o password."
+  } finally {
+    loading.value = false
+  }
+}
 </script>
 
-<style></style>
+<style scoped>
+/* SIGURADUHIN NA EMPTY ITO O WALANG NAKASULAT NA errorMsg DITO */
+</style>
